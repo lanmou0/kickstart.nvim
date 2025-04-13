@@ -1,3 +1,4 @@
+modified to suit lanmou0 needs
 # kickstart.nvim
 
 ## Introduction
