@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -120,6 +120,11 @@ end)
 
 -- Enable break indent
 vim.o.breakindent = true
+
+-- Tab behaviour
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- Save undo history
 vim.o.undofile = true
@@ -172,6 +177,33 @@ vim.o.confirm = true
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- [[custom keymap]]
+-- select move
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- select indent
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+
+-- Explorer
+vim.keymap.set('n', '<leader>x', vim.cmd.Ex)
+
+-- Center page scroll
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Yank/Past
+-- p without overriding default register
+vim.keymap.set("x", "<leader>p", [["_dP]])
+-- yank to os clipboard
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+-- yank line to os clipboard
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+-- delete to void register
+vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
+
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
